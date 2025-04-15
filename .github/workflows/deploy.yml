@@ -1,29 +1,23 @@
-name: Deploy to GitHub Pages
+name: Upload Artifact Example
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
-  deploy:
+  upload-artifact:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout the repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: List project files
+        run: ls -la
 
-      - name: Upload HTML
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload HTML artifact
+        uses: actions/upload-artifact@v4
         with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+          name: html-file
+          path: index.html
