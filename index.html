@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jenkins and Docker Information</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #0056b3;
+      }
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .section {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+      }
+      .section:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .command-block {
+        background-color: #e0e0e0;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        font-family: monospace;
+        font-size: 14px;
+        margin: 10px 0;
+      }
+      .command {
+        color: #007bff;
+        font-weight: bold;
+      }
+      .explanation {
+        margin-top: 5px;
+        color: #555;
+      }
+      .note {
+        background-color: #ffeeba;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 15px;
+        color: #85640a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Jenkins and Docker Information</h1>
+
+      <div class="section">
+        <h2>Jenkins</h2>
+        <p>
+          Jenkins is an open-source automation server that enables developers to
+          reliably build, test, and deploy their software.
+        </p>
+
+        <h3>Common Jenkins Commands (on Ubuntu):</h3>
+        <div class="command-block">
+          <span class="command">sudo systemctl start jenkins</span>
+          <p class="explanation">Starts the Jenkins service.</p>
+        </div>
+        <div class="command-block">
+          <span class="command">sudo systemctl stop jenkins</span>
+          <p class="explanation">Stops the Jenkins service.</p>
+        </div>
+        <div class="command-block">
+          <span class="command">sudo systemctl restart jenkins</span>
+          <p class="explanation">Restarts the Jenkins service.</p>
+        </div>
+        <div class="command-block">
+          <span class="command">sudo systemctl status jenkins</span>
+          <p class="explanation">
+            Checks the current status of the Jenkins service.
+          </p>
+        </div>
+        <div class="command-block">
+          <span class="command">sudo journalctl -u jenkins.service</span>
+          <p class="explanation">View the logs for the Jenkins service.</p>
+        </div>
+        <div class="command-block">
+          <span class="command">sudo cat /var/log/jenkins/jenkins.log</span>
+          <p class="explanation">
+            View the main Jenkins log file (if it exists and Jenkins starts).
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Docker</h2>
+        <p>
+          Docker is a platform for developing, shipping, and running
+          applications inside containers. Containers are lightweight, portable,
+          and self-sufficient units.
+        </p>
+
+        <h3>Common Docker Commands:</h3>
+        <h4>Container Management</h4>
+        <div class="command-block">
+          <span class="command"
+            >docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span
+          >
+          <p class="explanation">Runs a Docker container from an image.</p>
+          <p class="explanation">
+            Example:
+            <span class="command">docker run -d -p 80:80 nginx</span> (runs an
+            Nginx container in detached mode, mapping port 80 of the host to
+            port 80 of the container).
+          </p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker stop CONTAINER_ID</span>
+          <p class="explanation">Stops a running Docker container.</p>
+          <p class="explanation">
+            You can get the CONTAINER_ID using
+            <span class="command">docker ps</span>.
+          </p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker start CONTAINER_ID</span>
+          <p class="explanation">Starts a stopped Docker container.</p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker restart CONTAINER_ID</span>
+          <p class="explanation">Restarts a Docker container.</p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker rm CONTAINER_ID</span>
+          <p class="explanation">Removes a stopped Docker container.</p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker ps</span>
+          <p class="explanation">Lists running Docker containers.</p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker ps -a</span>
+          <p class="explanation">
+            Lists all Docker containers (running and stopped).
+          </p>
+        </div>
+
+        <h4>Image Management</h4>
+        <div class="command-block">
+          <span class="command">docker build -t IMAGE_NAME .</span>
+          <p class="explanation">
+            Builds a Docker image from a Dockerfile in the current directory.
+          </p>
+          <p class="explanation">
+            Replace <span class="command">IMAGE_NAME</span> with your desired
+            image name.
+          </p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker pull IMAGE_NAME[:TAG]</span>
+          <p class="explanation">
+            Pulls a Docker image from a registry (like Docker Hub).
+          </p>
+          <p class="explanation">
+            Example: <span class="command">docker pull ubuntu:latest</span>
+          </p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker push USERNAME/IMAGE_NAME[:TAG]</span>
+          <p class="explanation">Pushes a Docker image to a registry.</p>
+          <p class="explanation">
+            You need to be logged in to the registry using
+            <span class="command">docker login</span>.
+          </p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker images</span>
+          <p class="explanation">Lists locally available Docker images.</p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker rmi IMAGE_ID</span>
+          <p class="explanation">Removes a Docker image.</p>
+          <p class="explanation">
+            You can get the IMAGE_ID using
+            <span class="command">docker images</span>.
+          </p>
+        </div>
+
+        <h4>Other Useful Commands</h4>
+        <div class="command-block">
+          <span class="command">docker-compose up -d</span>
+          <p class="explanation">
+            Starts services defined in a Docker Compose file in detached mode.
+          </p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker-compose down</span>
+          <p class="explanation">
+            Stops and removes containers, networks, volumes, and images created
+            by <span class="command">docker-compose up</span>.
+          </p>
+        </div>
+        <div class="command-block">
+          <span class="command">docker logs CONTAINER_ID</span>
+          <p class="explanation">View the logs of a Docker container.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <p>
+          This is a basic overview of Jenkins and Docker with some common
+          commands. There are many more features and options available for both
+          tools.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
